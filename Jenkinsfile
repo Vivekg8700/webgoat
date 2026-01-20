@@ -18,13 +18,7 @@ pipeline {
                 SONAR_TOKEN = credentials('SONAR_TOKEN')
             }
             steps {
-                bat """
-                mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar ^
-                  -Dsonar.projectKey=Vivekg8700_Centralgit ^
-                  -Dsonar.organization=vivekg8700 ^
-                  -Dsonar.host.url=https://sonarcloud.io ^
-                  -Dsonar.login=%SONAR_TOKEN%
-                """
+                bat "mvn sonar:sonar -Dsonar.projectKey=Vivekg8700_Centralgit -Dsonar.organization=vivekg8700 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=%SONAR_TOKEN%"
             }
         }
 
@@ -44,4 +38,3 @@ pipeline {
         }
     }
 }
-
