@@ -16,7 +16,7 @@
   <name>WebGoat</name>
   <description>WebGoat, a deliberately insecure Web Application</description>
   <properties>
-  <sonar.organization>vivekg8700</sonar.organization>
+      <sonar.organization>vivekg8700</sonar.organization>
   </properties>
   <url>https://github.com/WebGoat/WebGoat</url>
   <inceptionYear>2006</inceptionYear>
