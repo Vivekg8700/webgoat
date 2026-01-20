@@ -6,20 +6,17 @@ pipeline {
     }
 
     stages {
+
         stage('Compile') {
             steps {
                 bat 'mvn clean compile'
             }
         }
 
-        stage('Build') {
-            steps {
-                bat 'mvn clean package'
+        stage('SonarQube Analysis') {
+            environment {
+                SONAR_TOKEN = credentials('SONAR_TOKEN')
             }
-        }
-
-        // ✅ ONLY ADD THIS STAGE
-        stage('Sonar Analysis') {
             steps {
                 bat """
                 mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar ^
@@ -28,6 +25,12 @@ pipeline {
                   -Dsonar.host.url=https://sonarcloud.io ^
                   -Dsonar.login=%SONAR_TOKEN%
                 """
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn clean package'
             }
         }
     }
@@ -41,3 +44,4 @@ pipeline {
         }
     }
 }
+
