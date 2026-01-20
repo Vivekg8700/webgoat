@@ -21,7 +21,7 @@ pipeline {
 
     post {
         success {
-            archiveArtifacts artifacts: 'target/**', fingerprint: true
+            archiveArtifacts artifacts: 'target/*', fingerprint: true
         }
         failure {
             echo 'Build failed. Please check the logs for details.'
