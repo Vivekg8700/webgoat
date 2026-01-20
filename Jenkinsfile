@@ -18,7 +18,13 @@ pipeline {
                 SONAR_TOKEN = credentials('SONAR_TOKEN')
             }
             steps {
-                bat "mvn sonar:sonar -Dsonar.projectKey=Vivekg8700_Centralgit -Dsonar.organization=vivekg8700 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=%SONAR_TOKEN%"
+                bat """
+                mvn sonar:sonar ^
+                -Dsonar.projectKey=Vivekg8700_Centralgit ^
+                -Dsonar.organization=vivekg8700 ^
+                -Dsonar.host.url=https://sonarcloud.io ^
+                -Dsonar.login=%SONAR_TOKEN%
+                """
             }
         }
 
@@ -34,7 +40,7 @@ pipeline {
             archiveArtifacts artifacts: 'target/**', fingerprint: true
         }
         failure {
-            echo 'Build failed. Please check the logs for details.'
+            echo 'Build failed. Please check the logs.'
         }
     }
 }
